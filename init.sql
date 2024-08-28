@@ -1,0 +1,1 @@
+Select 'Here is a init.sql but it is empty' as "Message to you"
