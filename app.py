@@ -2,24 +2,6 @@ import pandas as pd
 import psycopg2
 from sqlalchemy import create_engine, MetaData, Table, String, Integer, Column, Text, DateTime, Boolean, select
 
-
-# def process_data(engine):
-#     conn = engine.connect()
-
-#     data = pd.read_sql('Select min(age), max(age) from test_table Where length(name)<6', conn)
-
-#     return data
-
-# def create_table(engine):
-#     conn=engine.connect()
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     db_user = 'postgres'
     db_password = 'password'
@@ -49,22 +31,9 @@ if __name__ == "__main__":
 
     conn.commit()
 
-    print("im here")
-
     select_all_query = select(test_table)
     select_all_results = conn.execute(select_all_query)
 
-    print(select_all_results.fetchall())
-
-
-
-
-
-    
-
-
-
-    # result = process_data(engine)
-
-    # print("Максимальное и минимальное значения возраста:")
-    # print(result)
+    for row in select_all_results.fetchall():
+        output_row="ID: "+str(row[0])+"\tName: "+row[1]+"\tAge: "+str(row[2])+"\tDepartment: "+row[3]
+        print (output_row)
